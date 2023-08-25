@@ -11,16 +11,33 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundeIdentifier": "com.tootle",
+      "config": {
+        "googleMapsApiKey": "AIzaSyA0TXl55BO1TRIaWSxbdpidhnP--qi5R1U"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to provide real-time updates on nearby taxis when the app is in use.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location to provide real-time updates on nearby taxis even when the app is in the background."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.tootle",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyA0TXl55BO1TRIaWSxbdpidhnP--qi5R1U"
+        },
+        "permission": [
+          "ACCESS_COARSE_LOCATION",
+          "ACCESS_FIND_LOCATION",
+          "FOREGROUND_SERVICE"
+        ]
       }
     },
     "web": {
