@@ -18,15 +18,13 @@ const RecentRide = () => {
     {
       id: "123",
       orderType: "Ride",
-      origin: origin.description,
-      destination: destination.description,
+      origin: "Home",
     },
 
     {
       id: "2323",
       orderType: "Ride",
-      origin: origin.description,
-      destination: destination.description,
+      origin: "Work",
     },
   ];
 
@@ -39,14 +37,14 @@ const RecentRide = () => {
       //   )}
       renderItem={({ item: { origin, orderType } }) => (
         <TouchableOpacity
-          style={tw`flex-row items-center p-5 shadow-md my-2 rounded-xl bg-gray-200`}
+          style={tw`flex-row items-center p-5 shadow-md border-gray-700 my-2 mx-2 rounded-xl bg-slate-100`}
         >
           <Icon
-            style={tw`mr-4 rounded-full bg-gray-300 p-3`}
+            style={tw`mr-4 rounded-full bg-gray-300 p-2`}
             name="clock-outline"
             type="material-community"
-            color={"black"}
-            size={18}
+            color={"white"}
+            size={22}
           />
           <View>
             <Text style={tw`font-semibold text-lg`}>{orderType}</Text>

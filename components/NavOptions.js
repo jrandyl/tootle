@@ -40,7 +40,7 @@ const NavOptions = () => {
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screens)}
-          style={tw`px-6 pb-8 pt-4 bg-gray-200 m-2 w-40 rounded-3xl shadow-md`}
+          style={tw`px-6 pb-8 pt-4 bg-slate-100 m-2 w-40 rounded-3xl shadow-md`}
           disabled={!origin}
         >
           <View style={tw`${!origin ? "opacity-30" : ""}`}>
@@ -50,7 +50,7 @@ const NavOptions = () => {
             />
             <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
             <Icon
-              style={tw`p-2 bg-black rounded-full w-10 mt-4`}
+              style={tw`p-2 bg-blue-300 rounded-full w-10 mt-4`}
               type="antdesign"
               name="arrowright"
               color={"white"}

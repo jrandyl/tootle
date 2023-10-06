@@ -3,8 +3,12 @@ import React, { useEffect, useRef } from "react";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { mapStyle } from "./mapStyle";
 import tw from "twrnc";
-import { useSelector } from "react-redux";
-import { selectDestination, selectOrigin } from "../slices/navSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectDestination,
+  selectOrigin,
+  setTravelTimeInformation,
+} from "../slices/navSlice";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_KEY } from "@env";
 
@@ -12,6 +16,7 @@ const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   const mapRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!origin || !destination) return;
@@ -60,6 +65,26 @@ const Map = () => {
 
     mapRef.current.animateToRegion(initialRegion, 1000); // Animate to the calculated initial region
   }, [origin, destination]);
+
+  useEffect(() => {
+    if (!origin && !destination) {
+      return;
+    }
+    const getTravelTime = async () => {
+      const URL = `https://maps.googleapis.com/maps/api/distancematrix/json?departure_time=now&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_KEY}`;
+      try {
+        const response = await fetch(URL);
+        const data = await response.json();
+        const durationText = data.rows[0].elements[0].duration.text;
+        const distanceValue = data.rows[0].elements[0].distance.value;
+        dispatch(setTravelTimeInformation(data.rows[0].elements[0]));
+        // console.log(data.rows[0].elements[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getTravelTime();
+  }, [origin, destination, GOOGLE_MAPS_KEY]);
 
   return (
     <MapView

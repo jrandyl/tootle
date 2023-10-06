@@ -31,10 +31,19 @@ const HomeScreen = () => {
           debounce={400}
           styles={{
             container: {
+              backgroundColor: "white",
+              paddingTop: 20,
               flex: 0,
             },
+
             textInput: {
+              backgroundColor: "#E8E8E8",
+              borderRadius: 10,
               fontSize: 18,
+            },
+            textInputContainer: {
+              paddingHorizontal: 10,
+              paddingBottom: 0,
             },
           }}
           minLength={2}
@@ -57,7 +66,7 @@ const HomeScreen = () => {
         />
         <NavOptions />
         <View style={[tw`bg-gray-200 my-4`, { height: 0.8 }]} />
-        <Text>Recent Rides</Text>
+        <Text style={tw`text-gray-400`}>Recent Rides</Text>
         <RecentRide style={tw`text-gray-200`} />
       </View>
     </SafeAreaView>

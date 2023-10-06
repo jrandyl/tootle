@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import tailwind from "twrnc";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
@@ -6,6 +6,9 @@ import { GOOGLE_MAPS_KEY } from "@env";
 import { useDispatch } from "react-redux";
 import { setDestination } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
+import RecentRide from "./RecentRide";
+import { Icon } from "react-native-elements";
+import RideOptionsCard from "./RideOptionsCard";
 
 const NavCard = () => {
   const dispatch = useDispatch();
@@ -41,6 +44,34 @@ const NavCard = () => {
             }}
           />
         </View>
+        <RecentRide />
+      </View>
+      <View
+        style={tailwind`flex-row bg-white justify-evenly py-2 mt-auto border-gray-100`}
+      >
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Ride Option Card")}
+          style={tailwind`flex flex-row justify-between bg-black w-24 px-4 py-3 rounded-full`}
+        >
+          <Icon
+            name="motorbike"
+            type="material-community"
+            color={"white"}
+            size={22}
+          />
+          <Text style={tailwind`text-white text-center`}>Rides</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={tailwind`flex flex-row justify-between w-24 px-4 py-3 rounded-full bg-white shadow-md`}
+        >
+          <Icon
+            name="package-variant-closed"
+            type="material-community"
+            color={"black"}
+            size={22}
+          />
+          <Text style={tailwind`text-center`}>Delivery</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -56,12 +87,12 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    backgroundColor: "#DDDDDF",
-    borderRadius: 0,
+    backgroundColor: "#E8E8E8",
+    borderRadius: 10,
     fontSize: 18,
   },
   textInputContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     paddingBottom: 0,
   },
 });
